@@ -8,7 +8,9 @@
 
   outputs = { self, nixpkgs, devshell }:
   let
-    pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    pkgs = nixpkgs.legacyPackages.x86_64-linux.extend (nixpkgs.lib.composeManyExtensions [
+      devshell.overlay
+    ]);
   in
   {
     defaultPackage.x86_64-linux = import ../default-nix/default.nix { inherit pkgs; };
