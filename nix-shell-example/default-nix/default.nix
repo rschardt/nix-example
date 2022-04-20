@@ -1,8 +1,14 @@
 { pkgs ? import <nixpkgs> {} }:
 
-pkgs.python3Packages.buildPythonApplication {
-  pname = "exampleApp";
+pkgs.stdenv.mkDerivation {
+  name = "exampleApp";
   src = ./.;
-  version = "0.1";
-  #propagatedBuildInputs = [ pkgs.python3Packages.flask ];
+  buildInputs = with pkgs; [
+    lolcat
+  ];
+  installPhase = ''
+    mkdir -p $out
+    echo "hello world" | tee example.txt
+    mv example.txt $out
+  '';
 }
