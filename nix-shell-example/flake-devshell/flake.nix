@@ -3,17 +3,19 @@
 
   inputs = {
     devshell.url = "github:numtide/devshell";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, devshell }:
-  let
-    pkgs = nixpkgs.legacyPackages.x86_64-linux.extend (nixpkgs.lib.composeManyExtensions [
-      devshell.overlay
-    ]);
-  in
-  {
-    defaultPackage.x86_64-linux = import ../default-nix/default.nix { inherit pkgs; };
-    devShell = pkgs.devshell.fromTOML ./devshell.toml;
-  };
+  outputs = { self, nixpkgs, devshell, flake-utils }:
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system}.extend (nixpkgs.lib.composeManyExtensions [
+          devshell.overlay
+        ]);
+      in
+      {
+        defaultPackage = import ../default-nix/default.nix { inherit pkgs; };
+        devShell = pkgs.devshell.fromTOML ./devshell.toml;
+      }
+  );
 }

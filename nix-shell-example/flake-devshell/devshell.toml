@@ -1,5 +1,2 @@
 [[commands]]
 package = "lolcat"
-[devshell]
-packages = [
-]
