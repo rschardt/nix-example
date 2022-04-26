@@ -4,6 +4,7 @@
   inputs = {
     devshell.url = "github:numtide/devshell";
     flake-utils.url = "github:numtide/flake-utils";
+
   };
 
   outputs = { self, nixpkgs, devshell, flake-utils }:
