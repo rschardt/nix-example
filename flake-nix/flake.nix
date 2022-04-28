@@ -10,8 +10,6 @@
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
   in
   {
-    # Note that 'nix shell' only works
-    # when defaultPackage or another output is a pkgs.buildEnv or mkShell
     defaultPackage.x86_64-linux = pkgs.stdenv.mkDerivation {
 
       name = "exampleApp";
