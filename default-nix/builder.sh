@@ -4,6 +4,7 @@ for p in $buildInputs; do
   export PATH=$p/bin${PATH:+:}$PATH
 done
 
+rustc $src/hello.rs
+
 mkdir -p $out
-echo "hello world" | tee example.txt
-mv example.txt $out
+mv ./hello $out

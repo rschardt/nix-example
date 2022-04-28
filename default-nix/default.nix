@@ -1,9 +1,10 @@
 { pkgs ? import <nixpkgs> {} }:
 
 with pkgs; derivation {
-  name = "exampleApp";
+  name = "exampleRustApp";
   builder = "${bash}/bin/bash";
   args = [ ./builder.sh ];
-  buildInputs = [ coreutils ];
+  buildInputs = [ coreutils gcc rustc ]; # required by builder.sh
+  src = ./.;
   system = builtins.currentSystem;
 }
