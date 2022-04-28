@@ -1,14 +1,9 @@
 { pkgs ? import <nixpkgs> {} }:
 
-pkgs.stdenv.mkDerivation {
+with pkgs; derivation {
   name = "exampleApp";
-  src = ./.;
-  buildInputs = with pkgs; [
-    lolcat
-  ];
-  installPhase = ''
-    mkdir -p $out
-    echo "hello world" | tee example.txt
-    mv example.txt $out
-  '';
+  builder = "${bash}/bin/bash";
+  args = [ ./builder.sh ];
+  buildInputs = [ coreutils ];
+  system = builtins.currentSystem;
 }
