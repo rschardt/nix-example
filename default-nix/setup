@@ -1,0 +1,7 @@
+set -e
+
+IFS=' '
+unset PATH
+for p in $myDependencies; do
+  export PATH="$PATH${PATH:+:}$p/bin"
+done

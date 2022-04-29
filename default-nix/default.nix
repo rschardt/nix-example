@@ -1,16 +1,31 @@
 { pkgs ? import <nixpkgs> {} }:
 
-with pkgs; derivation {
+derivation { # This is the entry point to the nix package manager
+  ### required:
+
   name = "exampleRustApp";
-  builder = "${bash}/bin/bash";
-  args = [ ./builder.sh ];
-  buildInputs = [
+
+  builder = "${pkgs.bash}/bin/bash";
+  args = [ ./builder.sh ]; # optional, defaults to []
+
+  system = builtins.currentSystem;
+
+  ### additional (not expected by nix):
+
+  mySrc = ./src;
+
+  # required by builder.sh
+  myDependencies = with pkgs; [
     coreutils
     gcc
     rustc
     findutils
     patchelf
-  ]; # required by builder.sh
-  src = ./.; # is optional
-  system = builtins.currentSystem;
+  ];
+
+  ### additional, but required to use nix-shell:
+
+  # nix-shell calls $stdenv/setup
+  # ./setup sets up $PATH
+  stdenv = ./.;
 }

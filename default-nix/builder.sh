@@ -1,10 +1,8 @@
 set -e
-unset PATH
-for p in $buildInputs; do
-  export PATH=$p/bin${PATH:+:}$PATH
-done
 
-rustc $src/hello.rs
+source $stdenv/setup
+
+rustc $mySrc/hello.rs
 
 mkdir -p $out
 mv ./hello $out
