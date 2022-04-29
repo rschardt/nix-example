@@ -2,6 +2,7 @@
   description = "Example flake";
 
   inputs = {
+    # nixpkgs is optional
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
 
@@ -11,7 +12,6 @@
   in
   {
     defaultPackage.x86_64-linux = pkgs.stdenv.mkDerivation {
-
       name = "exampleApp";
       src = ./.;
       buildInputs = with pkgs; [
