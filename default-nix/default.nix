@@ -1,4 +1,7 @@
-{ pkgs ? import <nixpkgs> {} }:
+{
+    system ? builtins.currentSystem,
+    pkgs ? import <nixpkgs> { inherit system; }
+}:
 
 derivation { # This is the entry point to the nix package manager
   ### required:
@@ -8,7 +11,7 @@ derivation { # This is the entry point to the nix package manager
   builder = "${pkgs.bash}/bin/bash";
   args = [ ./builder.sh ]; # optional, defaults to []
 
-  system = builtins.currentSystem;
+  inherit system;
 
   ### additional (not expected by nix):
 
