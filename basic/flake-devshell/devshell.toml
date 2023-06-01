@@ -1,0 +1,5 @@
+[[commands]]
+package = "lolcat"
+
+[[commands]]
+package = "rustc"
