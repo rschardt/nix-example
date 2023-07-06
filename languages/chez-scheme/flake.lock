@@ -1,6 +1,39 @@
 {
   "nodes": {
+    "nix-bundle": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1678129993,
+        "narHash": "sha256-v6KkJT8dQkjsN9Dkx9P5zo+BYnjqQ1oJv3n6dW7fsaM=",
+        "owner": "matthewbauer",
+        "repo": "nix-bundle",
+        "rev": "83eadede9087c2c94a018ea6e240da552355dcc1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "matthewbauer",
+        "repo": "nix-bundle",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
+      "locked": {
+        "lastModified": 1620055814,
+        "narHash": "sha256-8LEHoYSJiL901bTMVatq+rf8y7QtWuZhwwpKE2fyaRY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1db42b7fe3878f3f5f7a4f2dc210772fd080e205",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "nixos-20.03-small",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_2": {
       "locked": {
         "lastModified": 1688585123,
         "narHash": "sha256-+xFOB4WaRUHuZI7H1tWHTrwY4BnbPmh8M1n/XhPRH0w=",
@@ -16,7 +49,8 @@
     },
     "root": {
       "inputs": {
-        "nixpkgs": "nixpkgs",
+        "nix-bundle": "nix-bundle",
+        "nixpkgs": "nixpkgs_2",
         "utils": "utils"
       }
     },
