@@ -12,7 +12,8 @@
     utils,
     ...
     } @ inputs:
-    utils.lib.eachDefaultSystem (
+    utils.lib.eachSystem ["x86_64-linux"] (
+    #utils.lib.eachDefaultSystem (
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
